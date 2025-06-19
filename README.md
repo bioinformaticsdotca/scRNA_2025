@@ -1,9 +1,7 @@
-## CBW WORKSHOP YEAR
+## CBW Single-Cell RNA-seq Analysis 2025
 
-[Workshop Website](YOUR WORKSHOP URL HERE)
+[Workshop Website](bioinformaticsdotca.github.io/scRNA_2025)
 
-CITY, PROVINCE(S)  
-Instructors: INSTRUCTOR NAMES  
-TAs: TA NAMES
+Ottawa, ON and Edmonton, AB  
+Instructors: Tallulah Andrews, Gary Bader, and Trevor Pugh
 
-OUTLINE HERE
