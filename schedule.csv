@@ -1,0 +1,26 @@
+day_label,date,time_mountain,time_eastern,activity,type
+July 10,2025-07-10,7:30,9:30,Arrivals & Check-in,other
+July 10,2025-07-10,8:00,10:00,Welcome (Nia Hughes),other
+July 10,2025-07-10,8:15,10:15,Module 1: Introduction to Single Cell RNA-seq (Trevor Pugh),activity
+July 10,2025-07-10,9:00,11:00,AWS Login & Setup,activity
+July 10,2025-07-10,9:30,11:30,Break (15min),break
+July 10,2025-07-10,9:45,11:45,"Module 2: Read Quantification, Lecture + Lab (Tallulah Andrews)",activity
+July 10,2025-07-10,10:45,12:45,Lunch (1h),lunch
+July 10,2025-07-10,11:45,13:45,Module 2 (continued),activity
+July 10,2025-07-10,13:30,15:30,"Module 3: scRNAseq Data Structures & Quality Control (Tallulah Andrews)",activity
+July 10,2025-07-10,14:15,16:15,Break (15min),break
+July 10,2025-07-10,14:30,16:30,Module 3: Lab,activity
+July 10,2025-07-10,16:30,18:30,End of Day 1,other
+July 10,2025-07-10,17:00,19:00,Social at Prenup Pub,other
+July 11,2025-07-11,7:30,9:30,Arrivals,other
+July 11,2025-07-11,8:00,10:00,"Module 4: Normalization & Confounders (Tallulah Andrews)",activity
+July 11,2025-07-11,8:45,10:45,Module 4 Lab,activity
+July 11,2025-07-11,9:45,11:45,Break (15min),break
+July 11,2025-07-11,10:00,12:00,"Module 5: Biological Analyses (Tallulah Andrews)",activity
+July 11,2025-07-11,11:00,13:00,Class Photo + Lunch (1h),lunch
+July 11,2025-07-11,12:00,14:00,Module 5 Lab,activity
+July 11,2025-07-11,13:45,15:45,Break (15min),break
+July 11,2025-07-11,14:00,16:00,"Module 6: Data Set Integration (Gary Bader)",activity
+July 11,2025-07-11,15:00,17:00,Module 6 Lab,activity
+July 11,2025-07-11,16:45,18:45,Survey & Closing Remarks,other
+July 11,2025-07-11,17:00,19:00,Finished,other

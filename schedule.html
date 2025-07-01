@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Workshop Schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Papa Parse for reading CSV files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        button[role="tab"][aria-selected="true"] { background-color: #4f46e5; color: white; border-color: #4f46e5; }
+        button[role="tab"][aria-selected="false"]:hover { background-color: #eef2ff; border-color: #a5b4fc; }
+        button[role="tab"]:focus { outline: 2px solid #4338ca; outline-offset: 2px; z-index: 10; }
+        div[role="tabpanel"] { display: none; }
+        div[role="tabpanel"]:not([hidden]) { display: block; }
+        #schedule-container table tbody tr.schedule-item-shaded { background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-6 md:p-8">
+
+    <div id="schedule-container" class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6">
+
+            <!-- Tabs and panels will be dynamically generated here -->
+            <div role="tablist" aria-label="Workshop Schedule" id="tab-list" class="border-b border-gray-200 mb-6 flex flex-wrap -mb-px"></div>
+            <div id="tab-panels"></div>
+
+            <div id="loading-message" class="text-center py-8 text-gray-500">Processing schedule...</div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const tabList = document.getElementById('tab-list');
+            const tabPanels = document.getElementById('tab-panels');
+            const loadingMessage = document.getElementById('loading-message');
+
+            // --- EMBEDDED SCHEDULE DATA ---
+            // For future workshops, simply replace the content inside the backticks (`)
+            // with your new schedule data in CSV format.
+            const csvData = `
+day_label,date,time_mountain,time_eastern,activity,type
+July 10,2025-07-10,7:30,9:30,Arrivals & Check-in,other
+July 10,2025-07-10,8:00,10:00,Welcome (Nia Hughes),other
+July 10,2025-07-10,8:15,10:15,Module 1: Introduction to Single Cell RNA-seq (Trevor Pugh),activity
+July 10,2025-07-10,9:00,11:00,AWS Login & Setup,activity
+July 10,2025-07-10,9:30,11:30,Break (15min),break
+July 10,2025-07-10,9:45,11:45,"Module 2: Read Quantification, Lecture + Lab (Tallulah Andrews)",activity
+July 10,2025-07-10,10:45,12:45,Lunch (1h),lunch
+July 10,2025-07-10,11:45,13:45,Module 2 (continued),activity
+July 10,2025-07-10,13:30,15:30,"Module 3: scRNAseq Data Structures & Quality Control (Tallulah Andrews)",activity
+July 10,2025-07-10,14:15,16:15,Break (15min),break
+July 10,2025-07-10,14:30,16:30,Module 3: Lab,activity
+July 10,2025-07-10,16:30,18:30,End of Day 1,other
+July 10,2025-07-10,17:00,19:00,Social at Prenup Pub,other
+July 11,2025-07-11,7:30,9:30,Arrivals,other
+July 11,2025-07-11,8:00,10:00,"Module 4: Normalization & Confounders (Tallulah Andrews)",activity
+July 11,2025-07-11,8:45,10:45,Module 4 Lab,activity
+July 11,2025-07-11,9:45,11:45,Break (15min),break
+July 11,2025-07-11,10:00,12:00,"Module 5: Biological Analyses (Tallulah Andrews)",activity
+July 11,2025-07-11,11:00,13:00,Class Photo + Lunch (1h),lunch
+July 11,2025-07-11,12:00,14:00,Module 5 Lab,activity
+July 11,2025-07-11,13:45,15:45,Break (15min),break
+July 11,2025-07-11,14:00,16:00,"Module 6: Data Set Integration (Gary Bader)",activity
+July 11,2025-07-11,15:00,17:00,Module 6 Lab,activity
+July 11,2025-07-11,16:45,18:45,Survey & Closing Remarks,other
+July 11,2025-07-11,17:00,19:00,Finished,other
+`;
+
+            // Parse the embedded CSV data string
+            Papa.parse(csvData, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    loadingMessage.style.display = 'none';
+                    const scheduleData = results.data;
+                    const headers = results.meta.fields;
+
+                    const days = scheduleData.reduce((acc, row) => {
+                        const day = row.day_label.trim();
+                        if (!acc[day]) acc[day] = { date: row.date, items: [] };
+                        acc[day].items.push(row);
+                        return acc;
+                    }, {});
+
+                    buildTabs(days, headers);
+                },
+                error: function(err) {
+                    loadingMessage.textContent = "Error parsing the embedded schedule data.";
+                    console.error("Error parsing CSV string:", err);
+                }
+            });
+
+            function buildTabs(days, headers) {
+                const dayLabels = Object.keys(days);
+                if (dayLabels.length === 0) {
+                    loadingMessage.style.display = 'block';
+                    loadingMessage.textContent = "No schedule data found.";
+                    return;
+                }
+
+                // Check which time zone columns are present
+                const hasTwoTimezones = headers.includes('time_mountain') && headers.includes('time_eastern');
+                const hasOneTimezone = headers.includes('time');
+
+                const today = new Date();
+                const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+                let activeTabIndex = dayLabels.findIndex(label => days[label].date === todayString);
+                if (activeTabIndex === -1) activeTabIndex = 0;
+
+                dayLabels.forEach((label, index) => {
+                    const dayInfo = days[label];
+                    const isActive = index === activeTabIndex;
+
+                    const tabId = `tab-${index}`;
+                    const panelId = `panel-${index}`;
+                    const button = document.createElement('button');
+                    button.id = tabId;
+                    button.role = 'tab';
+                    button.setAttribute('aria-controls', panelId);
+                    button.setAttribute('aria-selected', isActive);
+                    button.tabIndex = isActive ? 0 : -1;
+                    button.className = "text-gray-600 whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm sm:text-base transition-colors duration-200 ease-in-out rounded-t-md";
+                    button.textContent = label;
+                    tabList.appendChild(button);
+
+                    const panel = document.createElement('div');
+                    panel.id = panelId;
+                    panel.role = 'tabpanel';
+                    panel.tabIndex = 0;
+                    panel.setAttribute('aria-labelledby', tabId);
+                    if (!isActive) panel.hidden = true;
+
+                    // Dynamically build table header
+                    let tableHeaderHtml = '';
+                    if (hasTwoTimezones) {
+                        tableHeaderHtml = `
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider w-1/6">Time (Mountain)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider w-1/6">Time (Eastern)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider w-4/6">Activity</th>`;
+                    } else if (hasOneTimezone) {
+                        tableHeaderHtml = `
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider w-1/4">Time</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider w-3/4">Activity</th>`;
+                    } else {
+                        panel.innerHTML = `<p class="p-4 text-red-600">Error: CSV data must contain either ('time_mountain' and 'time_eastern') columns, or a single 'time' column.</p>`;
+                        tabPanels.appendChild(panel);
+                        return; // Continue to next panel
+                    }
+
+                    // Dynamically build table rows
+                    let tableRowsHtml = '';
+                    dayInfo.items.forEach(item => {
+                        const isShaded = item.type && item.type.toLowerCase() !== 'activity';
+                        let timeCells = '';
+                        if (hasTwoTimezones) {
+                            timeCells = `<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.time_mountain || ''}</td><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.time_eastern || ''}</td>`;
+                        } else if (hasOneTimezone) {
+                            timeCells = `<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.time || ''}</td>`;
+                        }
+                        tableRowsHtml += `<tr class="${isShaded ? 'schedule-item-shaded' : ''}">${timeCells}<td class="px-6 py-4 text-sm text-gray-700">${item.activity || ''}</td></tr>`;
+                    });
+
+                    panel.innerHTML = `
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-200"><tr>${tableHeaderHtml}</tr></thead>
+                                <tbody class="bg-white divide-y divide-gray-200">${tableRowsHtml}</tbody>
+                            </table>
+                        </div>`;
+                    tabPanels.appendChild(panel);
+                });
+
+                setupEventListeners();
+            }
+
+            function setupEventListeners() {
+                const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
+                function activateTab(tab) {
+                    tabs.forEach(t => {
+                        t.setAttribute('aria-selected', 'false');
+                        t.setAttribute('tabindex', '-1');
+                        const panel = document.getElementById(t.getAttribute('aria-controls'));
+                        if (panel) panel.hidden = true;
+                    });
+                    tab.setAttribute('aria-selected', 'true');
+                    tab.setAttribute('tabindex', '0');
+                    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+                    if (panel) panel.hidden = false;
+                }
+                tabList.addEventListener('click', (e) => {
+                    const clickedTab = e.target.closest('[role="tab"]');
+                    if (clickedTab) activateTab(clickedTab);
+                });
+                tabList.addEventListener('keydown', (e) => {
+                    const currentTab = e.target.closest('[role="tab"]');
+                    if (!currentTab) return;
+                    let index = tabs.indexOf(currentTab);
+                    if (e.key === 'ArrowRight') index = (index + 1) % tabs.length;
+                    else if (e.key === 'ArrowLeft') index = (index - 1 + tabs.length) % tabs.length;
+                    else if (e.key === 'Home') index = 0;
+                    else if (e.key === 'End') index = tabs.length - 1;
+                    else return;
+
+                    e.preventDefault();
+                    tabs[index].focus();
+                    activateTab(tabs[index]);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
