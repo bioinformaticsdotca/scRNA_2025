@@ -1,0 +1,6 @@
+# Module 6
+
+## Lecture
+<iframe src="https://docs.google.com/presentation/d/1Rq3dKD7v_ZZQv5Mh5aSJugozkgq4IhUu/preview" width="640" height="480" allow="autoplay"></iframe>
+
+## Lab

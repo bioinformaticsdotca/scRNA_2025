@@ -1,6 +1,6 @@
 # Module 3
 
 ## Lecture
-
+<iframe src="https://docs.google.com/presentation/d/1SOC1v13iz5x_NH8-P63RkWwckzUQLKQo/preview" width="640" height="480" allow="autoplay"></iframe>  
 
 ## Lab

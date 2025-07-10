@@ -1,6 +1,6 @@
 # Module 4
 
 ## Lecture
-
+<iframe src="https://docs.google.com/presentation/d/1BbYxaWBOYsUtbby3PeRxiSZwSwPUXgy9/preview" width="640" height="480" allow="autoplay"></iframe>  
 
 ## Lab
