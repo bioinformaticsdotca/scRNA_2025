@@ -1,6 +1,7 @@
 # Module 5
 
 ## Lecture
-<iframe src="https://docs.google.com/presentation/d/1Uv7h0HTORbsfBgqHcUeRtQAxAMRhyJpt/preview" width="640" height="480" allow="autoplay"></iframe>  
 
-## Lab
+<iframe width="640" height="360" src="https://www.youtube.com/embed/kSJYRScTKRE?si=FWG9RGGTvV5Hm7z0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<iframe src="https://docs.google.com/presentation/d/1Uv7h0HTORbsfBgqHcUeRtQAxAMRhyJpt/preview" width="640" height="480" allow="autoplay"></iframe>  
