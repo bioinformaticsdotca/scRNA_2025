@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> Example Data  | Single-Cell RNA-seq Analysis 2025</title>
+  <meta name="description" content="Workshop website for the Single-Cell RNA-seq Analysris 2025 Canadian Bioinformatics Workshop" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" Example Data  | Single-Cell RNA-seq Analysis 2025" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bioinformaticsdotca.github.io/scRNA_2025/img/bioinformatics_logo.png" />
+  <meta property="og:description" content="Workshop website for the Single-Cell RNA-seq Analysris 2025 Canadian Bioinformatics Workshop" />
+  <meta name="github-repo" content="bioinformaticsdotca/scRNA_2025" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" Example Data  | Single-Cell RNA-seq Analysis 2025" />
+  
+  <meta name="twitter:description" content="Workshop website for the Single-Cell RNA-seq Analysris 2025 Canadian Bioinformatics Workshop" />
+  <meta name="twitter:image" content="https://bioinformaticsdotca.github.io/scRNA_2025/img/bioinformatics_logo.png" />
+
+<meta name="author" content="Faculty: Tallulah Andrews, Gary Bader, Trevor Pugh" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="scrna-seq-analysis-datastructures.html"/>
+<link rel="next" href="module-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://bioinformaticsdotca.github.io/">
+ <img src="img/bioinformatics_logo.png" width="90%" alt="bioinformatics.ca logo" style="display:block; margin-left:auto; margin-right:auto; margin-top:15px;">
+ </a>
+<li><center><strong><a href="./"><br>Single-Cell RNA-seq Analysis<br><br></a></strong></center></li>
+<a href="./">
+ <img src="img/CBW_scRNA_Icon.jpg" width="70%" alt="Single-Cell RNA-seq Analysis logo" style="display:block; margin-left:auto; margin-right:auto; ">
+ </a>
+<br>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Workshop Info</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-work"><i class="fa fa-check"></i>Pre-work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="meet-your-faculty.html"><a href="meet-your-faculty.html"><i class="fa fa-check"></i>Meet Your Faculty</a></li>
+<li class="chapter" data-level="" data-path="data-and-compute-setup.html"><a href="data-and-compute-setup.html"><i class="fa fa-check"></i>Data and Compute Setup</a></li>
+<li class="part"><span><b>II Modules</b></span></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html#lecture"><i class="fa fa-check"></i>Lecture</a></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html#lab"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="divider"></li>
+<h1 id="sponsors">Sponsors</h1>
+<center>
+<a href="https://www.cihr-irsc.gc.ca"><img src="img/sponsors/cihr.png" width=90% style="padding-bottom: 20px" alt="Canadian Institutes of Health Research logo."></a>
+
+<a href="https://genomecanada.ca/"><img src="img/sponsors/genomecanada.png" height="70" style="display:inline-block;"  style="padding-bottom: 20px" alt="Genome Canada logo.">
+<a href="https://www.ontariogenomics.ca/"><img src="img/sponsors/ontariogenomics.png" height="70" style="display:inline-block;" style="padding-bottom: 20px;" alt="Ontario Genomics logo.">
+<br><br>
+<a href="https://oicr.on.ca/"><img src="img/sponsors/oicr.png" width=25% style="display:inline-block;" style="padding-bottom: 20px" alt="Ontario Institute for Cancer Research logo.">
+<a href="https://www.hpcforhealth.ca/"><img src="img/sponsors/hpc4health.png" width=60% style="display:inline-block;" style="padding-bottom: 20px "alt="HPC4Health logo.">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Single-Cell RNA-seq Analysis 2025</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-data" class="section level1">
+<h1>
+Example Data
+</h1>
+<p>
+Single cells isolated from the stria vascularis (SV) from the inner
+ear of lab mice (Korrapati et al. 2019). Technology: 10X Chromium
+Database: Gene Expression Omnibus <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE136196">GEO
+accession GSE136196</a>. Preprocessing: cellranger(7.1.0)
+</p>
+<div id="the-singlecellexperiment-object-sce" class="section level2">
+<h2>
+The <code>SingleCellExperiment</code> Object (SCE)
+</h2>
+<p>
+We have data from a 10X experiment as a <strong>sparse
+matrix</strong>, where the data is stored as a triplet (row, column,
+value), so that only non-zero values are stored. Since our matrix 98%
+zero, this greatly reduces the amount of information we need to
+store!
+</p>
+<p>
+Sparse matrices are defined in the <code>Matrix</code> package and it
+provides behind-the-scenes code that let us work with sparse matrices in
+the exact same way as regular matrices.
+</p>
+<p>
+Since one letter require the same amount of space to store as any
+number, the text portion of the matrix (row and column names) are stored
+once separately in <code>features.tsv.gz</code> and
+<code>barcodes.tsv.gz</code>. While the triplets are stored in
+<code>matrix.mtx</code> as (row number, column number, umi count).
+</p>
+<p>
+We could use <code>Matrix::readMM()</code> to read in
+<code>matrix.mtx</code> and <code>read.delim()</code> to read in the
+text files and then put them together, but many packages provide a
+function to automatically do this for us already.
+</p>
+<p>
+To make a <code>SingleCellExperiment</code> object automatically:
+</p>
+<pre class="r"><code>sce &lt;- DropletUtils::read10xCounts(&quot;~/CourseData/scRNA_data/scRNA_datasets/Korrapati_MouseEar_Fixed/filtered_feature_bc_matrix/&quot;)
+sce</code></pre>
+<pre><code>## class: SingleCellExperiment 
+## dim: 32285 552 
+## metadata(1): Samples
+## assays(1): counts
+## rownames(32285): ENSMUSG00000051951 ENSMUSG00000089699 ...
+##   ENSMUSG00000095019 ENSMUSG00000095041
+## rowData names(3): ID Symbol Type
+## colnames: NULL
+## colData names(2): Sample Barcode
+## reducedDimNames(0):
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>
+To make a <code>SingleCellExperiment</code> object manually:
+</p>
+<pre class="r"><code>sparsematrix &lt;- Matrix::readMM(&quot;~/CourseData/scRNA_data/scRNA_datasets/Korrapati_MouseEar_Fixed/filtered_feature_bc_matrix/matrix.mtx.gz&quot;)
+my_rownames &lt;- read.delim(&quot;~/CourseData/scRNA_data/scRNA_datasets/Korrapati_MouseEar_Fixed/filtered_feature_bc_matrix/features.tsv.gz&quot;, header=F)
+my_colnames &lt;- read.delim(&quot;~/CourseData/scRNA_data/scRNA_datasets/Korrapati_MouseEar_Fixed/filtered_feature_bc_matrix/barcodes.tsv.gz&quot;, header=F)
+head(my_rownames)</code></pre>
+<pre><code>##                   V1      V2              V3
+## 1 ENSMUSG00000051951    Xkr4 Gene Expression
+## 2 ENSMUSG00000089699  Gm1992 Gene Expression
+## 3 ENSMUSG00000102331 Gm19938 Gene Expression
+## 4 ENSMUSG00000102343 Gm37381 Gene Expression
+## 5 ENSMUSG00000025900     Rp1 Gene Expression
+## 6 ENSMUSG00000025902   Sox17 Gene Expression</code></pre>
+<p>
+We need to pick which gene IDs we’ll use, we will stick with Ensembl
+IDs for now.
+</p>
+<pre class="r"><code>rownames(sparsematrix) &lt;- my_rownames[,1]
+colnames(sparsematrix) &lt;- my_colnames[,1]
+class(sparsematrix)</code></pre>
+<pre><code>## [1] &quot;dgTMatrix&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;Matrix&quot;</code></pre>
+<pre class="r"><code>dim(sparsematrix)</code></pre>
+<pre><code>## [1] 32285   552</code></pre>
+<pre class="r"><code>sce2 &lt;- SingleCellExperiment(
+  assays = list(counts = sparsematrix),
+  rowData = my_rownames
+)
+sce2</code></pre>
+<pre><code>## class: SingleCellExperiment 
+## dim: 32285 552 
+## metadata(0):
+## assays(1): counts
+## rownames(32285): ENSMUSG00000051951 ENSMUSG00000089699 ...
+##   ENSMUSG00000095019 ENSMUSG00000095041
+## rowData names(3): V1 V2 V3
+## colnames(552): AAACCTGAGCTAGTTC-1 AAACGGGAGTCGTTTG-1 ...
+##   TTTGCGCCATGTAGTC-1 TTTGTCAAGAGACTTA-1
+## colData names(0):
+## reducedDimNames(0):
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>
+Here we can see we have: - 36601 genes (rows) - 475 cells (columns) -
+1 assay called “counts” - no lower dimensional representations -
+DropletUtils has automatically added information about each cell that is
+the “Sample” and “Barcode” which we don’t have when we made it
+manually.
+</p>
+<p>
+Let’s check what DropletUtils did:
+</p>
+<pre class="r"><code>head(colData(sce), 10)</code></pre>
+<pre><code>## DataFrame with 10 rows and 2 columns
+##                    Sample            Barcode
+##               &lt;character&gt;        &lt;character&gt;
+## 1  ~/CourseData/scRNA_d.. AAACCTGAGCTAGTTC-1
+## 2  ~/CourseData/scRNA_d.. AAACGGGAGTCGTTTG-1
+## 3  ~/CourseData/scRNA_d.. AAACGGGCAGCTCCGA-1
+## 4  ~/CourseData/scRNA_d.. AAACGGGTCACCACCT-1
+## 5  ~/CourseData/scRNA_d.. AAAGTAGCACATCCGG-1
+## 6  ~/CourseData/scRNA_d.. AAAGTAGTCGGAAATA-1
+## 7  ~/CourseData/scRNA_d.. AAATGCCCATTGGCGC-1
+## 8  ~/CourseData/scRNA_d.. AACACGTGTGCACCAC-1
+## 9  ~/CourseData/scRNA_d.. AACCATGGTCACCTAA-1
+## 10 ~/CourseData/scRNA_d.. AACCATGTCCGAACGC-1</code></pre>
+<p>
+Here we retrieve the column data (cells) from the SCE using
+<code>colData()</code> then print the top 10 rows using
+<code>head()</code>. We can see that “Barcode” has stored the cell
+barcode and “Sample” has stored the path to the folder we read in. This
+is a bit messy to look at so let’s replace that with a shorter name for
+this sample.
+</p>
+<pre class="r"><code>colData(sce)$Sample &lt;- &quot;Korrapati_exons&quot;
+head(colData(sce))</code></pre>
+<pre><code>## DataFrame with 6 rows and 2 columns
+##            Sample            Barcode
+##       &lt;character&gt;        &lt;character&gt;
+## 1 Korrapati_exons AAACCTGAGCTAGTTC-1
+## 2 Korrapati_exons AAACGGGAGTCGTTTG-1
+## 3 Korrapati_exons AAACGGGCAGCTCCGA-1
+## 4 Korrapati_exons AAACGGGTCACCACCT-1
+## 5 Korrapati_exons AAAGTAGCACATCCGG-1
+## 6 Korrapati_exons AAAGTAGTCGGAAATA-1</code></pre>
+<p>
+<em>How many rows did <code>head()</code> print by default?</em>
+</p>
+<p>
+If we look at the structure of our sce in the Environment browser or
+using <code>str()</code> we can see all the different slots in our SCE
+object.
+</p>
+</div>
+</div>
+</div>
+<p>
+<strong>Exercise 1 - Working with SingleCellExperiment
+Objects</strong> Using the following “accessor” functions obtain the
+following information from the SCE object:
+</p>
+<ol style="list-style-type: decimal">
+<li>
+the gene symbol of the 1013th row.
+</li>
+<li>
+the expression level for the 19108th gene in the 271th cell.
+</li>
+<li>
+the cellbarcodes of the first 25 cells.
+</li>
+</ol>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">
+Function
+</th>
+<th align="left">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">
+<code>rowData(sce)</code>
+</td>
+<td align="left">
+Table of gene metadata.
+</td>
+</tr>
+<tr class="even">
+<td align="right">
+<code>colData(sce)</code>
+</td>
+<td align="left">
+Table of cell metadata.
+</td>
+</tr>
+<tr class="odd">
+<td align="right">
+<code>assay(sce, "counts")</code>
+</td>
+<td align="left">
+The assay named “counts”.
+</td>
+</tr>
+<tr class="even">
+<td align="right">
+<code>reducedDim(sce, "PCA")</code>
+</td>
+<td align="left">
+The reduced dimensionality table named “PCA”
+</td>
+</tr>
+<tr class="odd">
+<td align="right">
+<code>sce<span class="math inline">\(colname&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;Shortcut to access the column “colname” from
+&lt;code&gt;colData&lt;/code&gt;. This is equivalent to
+&lt;code&gt;colData(sce)\)</span>colname</code>
+</td>
+</tr>
+<tr class="even">
+<td align="right">
+<code>sce[&lt;rows&gt;, &lt;columns&gt;]</code>
+</td>
+<td align="left">
+We can use the square brackets to subset the SCE object
+by rows or columns, similarly to how we subset a <code>matrix</code> or
+<code>data.frame</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+<div class="&lt;/p&gt;">
+<div class="note">
+<p>
+<strong>Naming Assays</strong>
+</p>
+<p>
+Assays can have any name we wish. However, there are some conventions
+we can follow:
+</p>
+<ul>
+<li>
+<code>counts</code>: Raw count data, e.g. number of reads or
+transcripts for a particular gene.
+</li>
+<li>
+<code>normcounts</code>: Normalized values on the same scale as the
+original counts. For example, counts divided by cell-specific size
+factors that are centred at unity.
+</li>
+<li>
+<code>logcounts</code>: Log-transformed counts or count-like values.
+In most cases, this will be defined as log-transformed normcounts,
+e.g. using log base 2 and a pseudo-count of 1.
+</li>
+<li>
+<code>cpm</code>: Counts-per-million. This is the read count for
+each gene in each cell, divided by the library size of each cell in
+millions.
+</li>
+<li>
+<code>tpm</code>: Transcripts-per-million. This is the number of
+transcripts for each gene in each cell, divided by the total number of
+transcripts in that cell (in millions).
+</li>
+</ul>
+</div>
+<p>
+Each of these has a function, so that we can access the “counts”
+assay using the <code>counts()</code> function. Therefore, these two are
+equivalent:
+</p>
+<pre class="r"><code>counts(sce)
+assay(sce, &quot;counts&quot;)</code></pre>
+<p>
+While this is simply conventions, many packages we use will assume
+the assay names above and you may get errors if your assays are
+incorrectly named. Fortunately, many functions will automatically create
+the appropriately named assay.
+</p>
+<div id="the-seurat-object" class="section level2">
+<h2>
+The <code>Seurat</code> Object
+</h2>
+<p>
+The other commonly used software package for 10X Chromium data is
+<code>Seurat</code>. Like with SingleCellExperiment there are some
+provided functions to make it easier to read data from cellranger.
+</p>
+<pre class="r"><code>sparsematrix &lt;- Seurat::Read10X(&quot;~/CourseData/scRNA_data/scRNA_datasets/Korrapati_MouseEar_Fixed/filtered_feature_bc_matrix/&quot;)
+seur_obj &lt;- Seurat::CreateSeuratObject(sparsematrix)
+seur_obj</code></pre>
+<pre><code>## An object of class Seurat 
+## 32285 features across 552 samples within 1 assay 
+## Active assay: RNA (32285 features, 0 variable features)
+##  1 layer present: counts</code></pre>
+<p>
+Seurat has expanded its data object in order to store multi-modal
+data : e.g. RNA &amp; ATACseq. So here we can see we have one assay
+called “RNA”, and we will have to look inside of “RNA” to find the count
+matrix and the normalized matrix (once we generate one).
+</p>
+<pre class="r"><code>Seurat::GetAssayData(seur_obj, assay=&quot;RNA&quot;, &quot;counts&quot;)[1:5,1:5]</code></pre>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##         AAACCTGAGCTAGTTC-1 AAACGGGAGTCGTTTG-1 AAACGGGCAGCTCCGA-1
+## Xkr4                     .                  .                  .
+## Gm1992                   .                  .                  .
+## Gm19938                  .                  .                  .
+## Gm37381                  .                  .                  .
+## Rp1                      .                  .                  .
+##         AAACGGGTCACCACCT-1 AAAGTAGCACATCCGG-1
+## Xkr4                     .                  .
+## Gm1992                   .                  .
+## Gm19938                  .                  .
+## Gm37381                  .                  .
+## Rp1                      .                  .</code></pre>
+<pre class="r"><code>seur_obj@assays$RNA@layers$counts[1:5,1:5]</code></pre>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##               
+## [1,] . . . . .
+## [2,] . . . . .
+## [3,] . . . . .
+## [4,] . . . . .
+## [5,] . . . . .</code></pre>
+<p>
+If we look at the structure of the Seurat Object as before, we can
+see that we have 3 slots for assays within our “RNA” slot: - “counts” :
+raw umi counts - “data” : normalized gene expression - “scale.data” :
+scaling each row of “data” to have a mean of 0 and standard deviation of
+1
+</p>
+<p>
+We also don’t have <code>rowData</code> or <code>colData</code>,
+instead Seurat puts information about the cells into
+<code>meta.data</code> and doesn’t store gene information at all - it
+uses gene symbols by default.
+</p>
+<p>
+Seurat also automatically calculates some quality measures for us and
+puts them in the metadata. Let’s have a look:
+</p>
+<pre class="r"><code>head(seur_obj@meta.data)</code></pre>
+<pre><code>##                       orig.ident nCount_RNA nFeature_RNA
+## AAACCTGAGCTAGTTC-1 SeuratProject      17174         3933
+## AAACGGGAGTCGTTTG-1 SeuratProject        639          427
+## AAACGGGCAGCTCCGA-1 SeuratProject      13500         3012
+## AAACGGGTCACCACCT-1 SeuratProject       5823         2458
+## AAAGTAGCACATCCGG-1 SeuratProject      10911         2824
+## AAAGTAGTCGGAAATA-1 SeuratProject       6335         2083</code></pre>
+<p>
+Here we see the total UMI counts for each cell (“nCount_RNA”) and the
+number of different genes detected per cell (“nFeature_RNA”). As with
+DropletUtils, Seurat has automatically added a sample id
+<code>orig.ident</code> but this time it’s even less helpful.
+</p>
+<div class="note">
+<p>
+<strong>Exercise 2 - Working with Seurat Object</strong> A) Fix the
+<code>orig.ident</code> column to contain a more useful name.
+</p>
+<ol start="2" style="list-style-type: upper-alpha">
+<li>
+Obtain/Calculate the following information:
+</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>
+the UMI counts for the 501st gene in the 322nd cell.
+</li>
+<li>
+the mean detected genes per cell.
+</li>
+<li>
+the total UMIs detected in the whole dataset
+</li>
+</ol>
+<p>
+<em>Hints:</em> <code>sum()</code> calculates the sum of a vector.
+<code>mean()</code> calculates the mean of a vector.
+<code>GetAssayData()</code> accessed the expression matrices in a Seurat
+Object.
+</p>
+</div>
+<p>
+Rather than fix the sample ID afterwards, we can set it when we
+create the Seurat Object:
+</p>
+<pre class="r"><code>seur_obj &lt;- Seurat::CreateSeuratObject(sparsematrix, project=&quot;Korrapati_exons&quot;)</code></pre>
+</div>
+<div id="modifying-objects" class="section level2">
+<h2>
+Modifying Objects
+</h2>
+<p>
+We’ve already seen that we can modify parts of the metadata. We can
+use a similar approach to modify all parts of an object. However, each
+slot has specific requirements that must be fulfilled to assign a new
+value. You can use <code>class()</code> to help figure out what is
+required. These are to ensure the appropriate data is present in each
+slot so that other functions that use the object can run correctly.
+</p>
+<div class="note">
+<p>
+<strong>Exercise 3</strong> Manually read in the
+<code>introns_and_exons.mtx</code> matrix. It contains counts for the
+number of intronic reads plus the exonic reads for our data. Replace the
+counts in our <code>seur_obj</code> with the intronic + exonic
+counts.
+</p>
+</div>
+<p>
+We could also create a new assay for our intronic + exonic counts and
+add it to the Seurat Object like so:
+</p>
+<pre class="r"><code>introns &lt;- Seurat::CreateAssayObject(sparsematrix)
+seur_obj@assays$Introns &lt;- introns</code></pre>
+</div>
+<div id="some-more-useful-functions" class="section level2">
+<h2>
+Some more useful functions
+</h2>
+<p>
+To create your own analysis pipelines and explore your data it is
+helpful to have some quick ways to summarize data stored in
+matrices:
+</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">
+Function
+</th>
+<th align="left">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">
+<code>rowMeans(sparsematrix)</code>
+</td>
+<td align="left">
+mean of each row.
+</td>
+</tr>
+<tr class="even">
+<td align="right">
+<code>colMeans(sparsematrix)</code>
+</td>
+<td align="left">
+mean of each column.
+</td>
+</tr>
+<tr class="odd">
+<td align="right">
+<code>rowSums(sparsematrix)</code>
+</td>
+<td align="left">
+sum of each row.
+</td>
+</tr>
+<tr class="even">
+<td align="right">
+<code>colSums(sparsematrix)</code>
+</td>
+<td align="left">
+sum of each column.
+</td>
+</tr>
+<tr class="odd">
+<td align="right">
+<code>t()</code>
+</td>
+<td align="left">
+swaps rows and columns of a matrix.
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Let’s use these functions to calculate the same summary statistics we
+have in our SeuratObject for our SingleCellExperiment object.
+</p>
+<pre class="r"><code>colData(sce)$nCount &lt;- colSums(counts(sce))
+colData(sce)$nFeatures &lt;- colSums(counts(sce) &gt; 0) </code></pre>
+<div class="note">
+<p>
+When we do math with TRUE/FALSE values, the are swapped to numbers:
+TRUE = 1, FALSE = 0.
+</p>
+</div>
+<div id="subsetting-single-cell-objects" class="section level3">
+<h3>
+Subsetting Single Cell Objects
+</h3>
+<p>
+Similar to the standard <code>data.frame</code> and
+<code>matrix</code> objects in R, we can use the <code>[</code> operator
+to subset our SingleCellExperiment or SeuratObject either by
+<em>rows</em> (genes) or <em>columns</em> (cells). The general syntax
+is:
+<strong><code>sce[rows_of_interest, columns_of_interest]</code></strong>.
+We can use gene/column names, logical values, or row/column numbers.
+</p>
+<p>
+For example, we might want to select only the cells with &gt;1000
+detected UMIs:
+</p>
+<pre class="r"><code>filtered_sce &lt;- sce[,colData(sce)$nCount &gt; 1000]
+dim(filtered_sce)</code></pre>
+<pre><code>## [1] 32285   476</code></pre>
+<p>
+Or we may want to remove mitochondrial genes (which start with “mt-”
+in the mouse) from the matrix:
+</p>
+<pre class="r"><code>filtered_sce &lt;- sce[!grepl(&quot;^mt-&quot;, rowData(sce)$Symbol),]
+dim(filtered_sce)</code></pre>
+<pre><code>## [1] 32272   552</code></pre>
+<div class="note">
+<p>
+<code>grepl("^mt-")</code> uses a regular expression to find all the
+genes that start with (“^”), a particular pattern (“mt-”). It returns
+TRUE if the rownames matches the pattern and FALSE if it doesn’t. The
+details of all the options for regular expressions is beyond the scope
+of this course but use <code>?grepl</code> to see the related R
+functions and see this website for more information on regular
+expressions: <a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">Intro
+to Regular Expressions</a>
+</p>
+</div>
+<div class="note">
+<p>
+<strong>Exercise 4 - Subsetting objects</strong> 1. Subset our Seurat
+object using the same criteria as the SCE. 2. Subset our SCE and Seurat
+objects to contain only genes with total UMIs of at least 100 (hint:
+look at the <code>rowSums()</code> function) 3. Subset our Seurat object
+to remove ribosomal genes (hint: their gene names start with “Rps” or
+“Rpl” for mice)
+</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="overview" class="section level2">
+<h2>
+Overview
+</h2>
+<div class="highlight">
+<p>
+<strong>KEY POINTS</strong>
+</p>
+<ul>
+<li>
+<p>
+The <strong><em>SingleCellExperiment</em></strong> (SCE) object
+is used to store expression data as well as information about our
+<strong>cells (columns)</strong> and <strong>genes
+(rows)</strong>.
+</p>
+</li>
+<li>
+<p>
+To create a new SCE object we can use the
+<code>SingleCellExperiment()</code> function. To read the output from
+<em>cellranger</em> we can use the dedicated function
+<code>DropletUtils::read10xCounts()</code>.
+</p>
+</li>
+<li>
+<p>
+The main parts of this object are:
+</p>
+<ul>
+<li>
+<strong><em>assay</em></strong> - one or more matrices of expression
+quantification.
+<ul>
+<li>
+There is one essential assay named “counts”, which contains the raw
+counts on which all other analyses are based on.
+</li>
+</ul>
+</li>
+<li>
+<strong><em>rowData</em></strong> - information about our
+genes.
+</li>
+<li>
+<strong><em>colData</em></strong> - information about our
+cells.
+</li>
+<li>
+<strong><em>reducedDim</em></strong> - one or more reduced dimension
+representations of our data.
+</li>
+</ul>
+</li>
+<li>
+<p>
+We can add/modify parts of this object using the
+</p>
+</li>
+<li>
+<p>
+The <strong>Seurat</strong> Object can store gene expression as
+well as other types of single-cell data such as scATAC or Multiome data.
+It stores count matrices as well as information about cells in a
+<strong>meta.data</strong> dataframe.
+</p>
+</li>
+<li>
+<p>
+The main parts of this object are:
+</p>
+<ul>
+<li>
+<strong><em>assays</em></strong> - counts, log transformed +
+normalized counts (data), scaled data (scale.data)
+</li>
+<li>
+<strong>meta.data</strong> - information about the cells
+</li>
+<li>
+<strong>reductions</strong> - one or more reduced dimension
+representations of our data.
+</li>
+</ul>
+</li>
+<li>
+<p>
+We can access parts of these object using ‘accessor’ functions or
+directly using <code>@</code> and <code><span class="math inline">\(&lt;/code&gt; notation. For example
+&lt;code&gt;seur_obj@assays\)</span><a href="mailto:RNA@counts" class="email">RNA@counts</a></code>
+</p>
+</li>
+<li>
+<p>
+We can add/modify part of these objects using the assignment
+operator <code>&lt;-</code>. For example
+<code>assay(sce, "logcounts") &lt;- log2(counts(sce) + 1)</code> would
+add a new assay named “logcounts” to our object.
+</p>
+</li>
+<li>
+<p>
+Matrix summary metrics are very useful to explore the properties
+of our expression data. Some of the more useful functions include
+<code>rowSums()</code>/<code>colSums()</code> and
+<code>rowMeans()</code>/<code>colMeans()</code>.
+</p>
+</li>
+<li>
+<p>
+Combining matrix summaries with conditional operators
+(<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code>)
+can be used for <strong>conditional subsetting</strong> using
+<code>[</code>.
+</p>
+</li>
+</ul>
+</div>
+<div id="sessioninfo" class="section level3">
+<h3>
+sessionInfo()
+</h3>
+<details>
+<summary>
+View session info
+</summary>
+<pre><code>## R version 4.4.0 (2024-04-24)
+## Platform: x86_64-pc-linux-gnu
+## Running under: Ubuntu 22.04.4 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
+## 
+## locale:
+##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+## 
+## time zone: America/Toronto
+## tzcode source: system (glibc)
+## 
+## attached base packages:
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] Matrix_1.7-0                DropletUtils_1.24.0        
+##  [3] SingleCellExperiment_1.26.0 SummarizedExperiment_1.34.0
+##  [5] Biobase_2.64.0              GenomicRanges_1.56.0       
+##  [7] GenomeInfoDb_1.40.1         IRanges_2.38.0             
+##  [9] S4Vectors_0.42.0            BiocGenerics_0.50.0        
+## [11] MatrixGenerics_1.16.0       matrixStats_1.3.0          
+## [13] Seurat_5.1.0                SeuratObject_5.0.2         
+## [15] sp_2.1-4                    knitr_1.46                 
+## 
+## loaded via a namespace (and not attached):
+##   [1] RColorBrewer_1.1-3        rstudioapi_0.16.0        
+##   [3] jsonlite_1.8.8            magrittr_2.0.3           
+##   [5] spatstat.utils_3.1-4      rmarkdown_2.27           
+##   [7] zlibbioc_1.50.0           vctrs_0.6.5              
+##   [9] ROCR_1.0-11               DelayedMatrixStats_1.26.0
+##  [11] spatstat.explore_3.2-7    S4Arrays_1.4.1           
+##  [13] htmltools_0.5.8.1         Rhdf5lib_1.26.0          
+##  [15] rhdf5_2.48.0              SparseArray_1.4.8        
+##  [17] sass_0.4.9                sctransform_0.4.1        
+##  [19] parallelly_1.37.1         KernSmooth_2.23-24       
+##  [21] bslib_0.7.0               htmlwidgets_1.6.4        
+##  [23] ica_1.0-3                 plyr_1.8.9               
+##  [25] plotly_4.10.4             zoo_1.8-12               
+##  [27] cachem_1.1.0              igraph_2.0.3             
+##  [29] mime_0.12                 lifecycle_1.0.4          
+##  [31] pkgconfig_2.0.3           R6_2.5.1                 
+##  [33] fastmap_1.2.0             GenomeInfoDbData_1.2.12  
+##  [35] fitdistrplus_1.1-11       future_1.33.2            
+##  [37] shiny_1.8.1.1             digest_0.6.35            
+##  [39] colorspace_2.1-0          patchwork_1.2.0          
+##  [41] tensor_1.5                dqrng_0.4.1              
+##  [43] RSpectra_0.16-1           irlba_2.3.5.1            
+##  [45] beachmat_2.20.0           progressr_0.14.0         
+##  [47] fansi_1.0.6               spatstat.sparse_3.0-3    
+##  [49] httr_1.4.7                polyclip_1.10-6          
+##  [51] abind_1.4-5               compiler_4.4.0           
+##  [53] BiocParallel_1.38.0       fastDummies_1.7.3        
+##  [55] R.utils_2.12.3            HDF5Array_1.32.0         
+##  [57] MASS_7.3-60.2             DelayedArray_0.30.1      
+##  [59] tools_4.4.0               lmtest_0.9-40            
+##  [61] httpuv_1.6.15             future.apply_1.11.2      
+##  [63] goftest_1.2-3             R.oo_1.26.0              
+##  [65] glue_1.7.0                rhdf5filters_1.16.0      
+##  [67] nlme_3.1-164              promises_1.3.0           
+##  [69] grid_4.4.0                Rtsne_0.17               
+##  [71] cluster_2.1.6             reshape2_1.4.4           
+##  [73] generics_0.1.3            gtable_0.3.5             
+##  [75] spatstat.data_3.0-4       R.methodsS3_1.8.2        
+##  [77] tidyr_1.3.1               data.table_1.15.4        
+##  [79] utf8_1.2.4                XVector_0.44.0           
+##  [81] spatstat.geom_3.2-9       RcppAnnoy_0.0.22         
+##  [83] ggrepel_0.9.5             RANN_2.6.1               
+##  [85] pillar_1.9.0              stringr_1.5.1            
+##  [87] limma_3.60.2              spam_2.10-0              
+##  [89] RcppHNSW_0.6.0            later_1.3.2              
+##  [91] splines_4.4.0             dplyr_1.1.4              
+##  [93] lattice_0.22-6            survival_3.6-4           
+##  [95] deldir_2.0-4              tidyselect_1.2.1         
+##  [97] locfit_1.5-9.9            scuttle_1.14.0           
+##  [99] miniUI_0.1.1.1            pbapply_1.7-2            
+## [101] gridExtra_2.3             edgeR_4.2.0              
+## [103] scattermore_1.2           xfun_0.52                
+## [105] statmod_1.5.0             stringi_1.8.4            
+## [107] UCSC.utils_1.0.0          lazyeval_0.2.2           
+## [109] yaml_2.3.8                evaluate_0.23            
+## [111] codetools_0.2-20          tibble_3.2.1             
+## [113] cli_3.6.2                 uwot_0.2.2               
+## [115] xtable_1.8-4              reticulate_1.37.0        
+## [117] munsell_0.5.1             jquerylib_0.1.4          
+## [119] Rcpp_1.0.12               globals_0.16.3           
+## [121] spatstat.random_3.2-3     png_0.1-8                
+## [123] parallel_4.4.0            ggplot2_3.5.1            
+## [125] dotCall64_1.1-1           sparseMatrixStats_1.16.0 
+## [127] listenv_0.9.1             viridisLite_0.4.2        
+## [129] scales_1.3.0              ggridges_0.5.6           
+## [131] crayon_1.5.2              leiden_0.4.3.1           
+## [133] purrr_1.0.2               rlang_1.1.3              
+## [135] cowplot_1.1.3</code></pre>
+</details>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+<!-- code folding -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scrna-seq-analysis-datastructures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="module-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/bioinformaticsdotca/scRNA_2025/blob/main/010-module-1.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

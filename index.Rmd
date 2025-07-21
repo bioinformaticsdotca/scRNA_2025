@@ -18,11 +18,9 @@ favicon: img/favicon.ico
 
 # Workshop Info
 
-Coming soon! 
+## Class Photo
 
-<!--## Class Photo
-
-After workshop concludes, YOUR EMBED CODE HERE-->
+<iframe src="https://drive.google.com/file/d/15La5qnvhwdvRIXhmrDhalw0MSMrl5SIo/preview" width="640" height="480" allow="autoplay"></iframe>
 
 ## Schedule
 
@@ -85,5 +83,5 @@ tagList(
 
 ## Pre-work
 
-<!--[You can find your pre-work here.](LINK TO PREWORK)
--->
+[You can find your pre-work here.](https://forms.gle/PcqVJw4wRsQm9Qra8)
+
